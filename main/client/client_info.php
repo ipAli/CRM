@@ -122,7 +122,7 @@
 <style type="text/css">
 	.document{
 		width: 100%;
-		height: 10%;
+		height: 2em;
 		border: 1px solid;
 	}
 	#documents{
