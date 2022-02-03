@@ -50,17 +50,17 @@
 						<tr>
 							<?
 							if($base['type'] == 'Физ'){ ?>
-								<td onclick="window.location.href='client_info.php?id=<?=$base['id'] ?>'; return false" class="names"><?= $base['name'] ?></td>
-								<td onclick="window.location.href='client_info.php?id=<?=$base['id'] ?>'; return false" class="telephone"><?= $base['telephone'] ?></td>
-								<td onclick="window.location.href='client_info.php?id=<?=$base['id'] ?>'; return false" class="email"><?= $base['email'] ?></td>
-								<td onclick="window.location.href='client_info.php?id=<?=$base['id'] ?>'; return false" class="type"><?= $base['type'] ?></td>
-								<td onclick="window.location.href='client_info.php?id=<?=$base['id'] ?>'; return false" class="manager"><?= $manager_name ?></td>
+								<td onclick="window.location.href='client/client_info.php?id=<?=$base['id'] ?>'; return false" class="names"><?= $base['name'] ?></td>
+								<td onclick="window.location.href='client/client_info.php?id=<?=$base['id'] ?>'; return false" class="telephone"><?= $base['telephone'] ?></td>
+								<td onclick="window.location.href='client/client_info.php?id=<?=$base['id'] ?>'; return false" class="email"><?= $base['email'] ?></td>
+								<td onclick="window.location.href='client/client_info.php?id=<?=$base['id'] ?>'; return false" class="type"><?= $base['type'] ?></td>
+								<td onclick="window.location.href='client/client_info.php?id=<?=$base['id'] ?>'; return false" class="manager"><?= $manager_name ?></td>
 							<? }else{ ?>
-								<td onclick="window.location.href='client_info.php?id=<?=$base['id'] ?>'; return false" class="names"><?= $base['company_name'] ?></td>
-								<td onclick="window.location.href='client_info.php?id=<?=$base['id'] ?>'; return false" class="telephone"><?= $base['telephone'] ?></td>
-								<td onclick="window.location.href='client_info.php?id=<?=$base['id'] ?>'; return false" class="email"><?= $base['email'] ?></td>
-								<td onclick="window.location.href='client_info.php?id=<?=$base['id'] ?>'; return false" class="type"><?= $base['type'] ?></td>
-								<td onclick="window.location.href='client_info.php?id=<?=$base['id'] ?>'; return false" class="manager"><?= $manager_name ?></td>
+								<td onclick="window.location.href='client/client_info.php?id=<?=$base['id'] ?>'; return false" class="names"><?= $base['company_name'] ?></td>
+								<td onclick="window.location.href='client/client_info.php?id=<?=$base['id'] ?>'; return false" class="telephone"><?= $base['telephone'] ?></td>
+								<td onclick="window.location.href='client/client_info.php?id=<?=$base['id'] ?>'; return false" class="email"><?= $base['email'] ?></td>
+								<td onclick="window.location.href='client/client_info.php?id=<?=$base['id'] ?>'; return false" class="type"><?= $base['type'] ?></td>
+								<td onclick="window.location.href='client/client_info.php?id=<?=$base['id'] ?>'; return false" class="manager"><?= $manager_name ?></td>
 							<? } ?>
 								<td class="dop">icon</td>
     							<td class="dop">icon</td>
