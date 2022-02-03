@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div id="main">
-		 <table width="80%">
+		 <table width="78%">
    			<tr>
     			<th class="names">ФИО/Компания</th>	
     			<th class="telephone">Телефон</th>
