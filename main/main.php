@@ -119,7 +119,7 @@
 					$result = $mysqli->query($query);
 					while($base = $result->fetch_assoc())
 					{ ?>
-					   <a href="box_info.php?id=<?= $base['id'] ?>"><div class="box <?= $base['arenda_info'] ?>" onmouseover="send(<?= $base['id'] ?>)">
+					   <a href="box/box_info.php?id=<?= $base['id'] ?>"><div class="box <?= $base['arenda_info'] ?>" onmouseover="send(<?= $base['id'] ?>)">
 					   		<?= $base['box_number'] ?> <?= $base['size_b'] ?>
 					   </div></a>
 					<? }
@@ -144,7 +144,7 @@
 	function send(id){
 		var params = 'id='+id;
 		var request = new XMLHttpRequest();
-		request.open('POST', 'box_info_ajax.php');
+		request.open('POST', 'box/box_info_ajax.php');
 		request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		request.send(params);
 		request.onreadystatechange = function(){
@@ -217,11 +217,4 @@
 		background-color: #7FB36B;
 	}
 </style>
-	<!--
-	$query = "SELECT * FROM `boxs`";
-	$result = $mysqli->query($query); // запрос на выборку
-	while($base = $result->fetch_assoc())// получаем все строки в цикле по одной
-	{
-	    echo '<p>Запись id='.$base['location'].'. Текст: '.$base['text'].'</p>';// выводим данные
-	}
-	-->
+
