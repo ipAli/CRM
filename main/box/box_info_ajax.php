@@ -7,8 +7,8 @@ $result = $mysqli->query($query);
 while($base = $result->fetch_assoc())
 {
     $data = array(
-    	'id'=>$base['id'],
-    	'box_number'=>$base['box_number']
+    	"id"=>$base["id"],
+    	"box_number"=>$base["box_number"]
     );
 }
 echo json_encode($data);
