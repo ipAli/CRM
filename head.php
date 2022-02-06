@@ -18,13 +18,12 @@
 
 	<div id="left_bar">
 		<a href="clients.php">clients</a><br>
-		<a href="main.php">main</a>
+		<a href="main.php">main</a><br>
+		<a href="lids.php">lids</a><br>
 	</div>
 </body>
 </html>
-<script type="text/javascript">
-	//document.querySelector('html').style.display='none'
-</script>
+
 <style type="text/css">
 	a{
 		text-decoration: none;
