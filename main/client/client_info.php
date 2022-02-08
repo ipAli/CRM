@@ -79,7 +79,6 @@
 					<input type="text" name="name" value="<?= $issued ?>"><br>
 					<img class="main_img" src="data:image/jpeg;base64, <?= $photo_1 ?>" alt="" width="" height="">
 					<img class="main_img" src="data:image/jpeg;base64, <?= $photo_2 ?>" alt="" width="" height="">
-					<label for="phone">Enter your phone number:</label>
 
 				<?php }else{ ?>
 
