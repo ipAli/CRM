@@ -121,7 +121,6 @@
 		request.send(params);
 		request.onreadystatechange = function(){
 			lid_info = JSON.parse(request.responseText);
-			//alert(lid_info['type'])
 			if(lid_info){
 				if(lid_info['type'] == 'Юр'){
 					text.innerHTML= 
