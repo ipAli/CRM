@@ -10,47 +10,10 @@
 </head>
 <body>
 	<div id="main">
+
 		<div id="left_block">
-			<?php
-			//request (GET, POST)
-			$request= [];
-			//DB struct
-			$DBtable = [];
-			//select_name
-			$select_name = [];
-			$query = sql_query('users', $request, $DBtable, $select_name);
-	
-			$result = $mysqli->query($query);
-			while($base = $result->fetch_assoc()){ 
-	
-				$this_id = $base['id'];
-				$query = "SELECT `id` FROM `user_info` WHERE `connect_id` = '$this_id'";
-				$data = mysqli_query($connect, $query);
-				if(mysqli_fetch_all($data)){
-					$data_checked = "Заполнены";
-				}else{
-					$data_checked = "Отсутствую";
-				}
-				?>
-	
-				<div class="lid" onmouseover="send(<?= $base['id'] ?>)">
-					Емаил: <?= $base['email'] ?><br>
-					Статус: <?= $base['status'] ?><br>
-					Телефон: <?= $base['telephone'] ?><br>
-					<br><br>
-					Данные: <?= $data_checked ?>
-
-
-					<div class="side_bar">
-						<img class="icon" src="../images/accept.png" width="100%" height="20%">
-						<img class="icon" src="../images/comment.png" width="100%" height="20%">
-						<img class="icon" src="../images/accept.png" width="100%" height="20%">
-					</div>
-				</div>
-	
-				<br>
-	
-			<?php } ?>
+			
+			<div id="lid"></div>
 		</div>
 
 		<div id="right_block">
@@ -62,6 +25,97 @@
 	</div>
 </body>
 </html>
+
+<script type="text/javascript">
+	window.onload = function() {
+		var text = document.getElementById('lid')
+
+		function view_lids(){
+			var request = new XMLHttpRequest();
+			params = 'id=' + 'wer'
+			request.open('POST', 'lid/lid_views_ajax.php');
+			request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			request.send(params);
+			request.onreadystatechange = function(){
+				lid_info = JSON.parse(request.responseText);
+				for(i=0;i<lid_info.length;i++){
+					text.innerHTML += 
+					`
+					<div class='lid' onmouseover='send(${lid_info[i].id})'>
+						Емаил: ${lid_info[i].email}<br>
+						Статус: ${lid_info[i].status}<br>
+						Телефон: ${lid_info[i].telephone}<br>
+						<br><br>
+						Данные: ${lid_info[i].data_checked}
+		
+		
+						<div class='side_bar'>
+							<img class='icon' src='../images/accept.png' width='100%' height='20%'>
+							<img class='icon' src='../images/comment.png' width='100%' height='20%'>
+							<img class='icon' src='../images/accept.png' width='100%' height='20%'>
+						</div>
+					</div>
+					<br>
+					`
+				}
+			}
+		}
+		view_lids()
+	}
+
+
+	var text = document.getElementById('text')
+		function send(id){
+			var params = 'id='+ id;
+			var request = new XMLHttpRequest();
+			request.open('POST', 'lid/lid_info_ajax.php');
+			request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			request.send(params);
+			request.onreadystatechange = function(){
+				lid_info = JSON.parse(request.responseText);
+			if(lid_info){
+				if(lid_info['type'] == 'Юр'){
+					text.innerHTML = 
+					`
+					<form action="lid/update_lid_info.php" method="POST">
+
+					<h3>Тип: Юр</h3><br>
+
+					<div class='border'> Название компании: <div class='right_side_info'>
+						<input class='rs_inp' type='text' value='${lid_info.company_name}'>
+					</div></div><br><br>
+
+					<div class='border'> ИНН: <div class='right_side_info'>
+						<input name='inn' class='rs_inp' type='text' value='${lid_info.inn}'>
+					</div></div><br><br>
+
+					<div class='border'> Юр. адрес: <div class='right_side_info'>
+						<input class='rs_inp' type='text' value='${lid_info.ur_adress}'>
+					</div></div><br><br>
+
+					<input class='sbm' type='submit'>
+					</form>
+					`
+					
+					
+					
+				}else{
+				text.innerHTML= 
+					`
+					<h3>Тип: Физ</h3><br>
+					<div class='border'> Имя: <div class='right_side_info'>${lid_info.name}</div></div><br>
+					`
+				}
+			}else{
+				text.innerHTML= 
+					`
+					<h1 style="text-align: center;">Нет данных</h1>
+					`
+			}
+		}
+	}
+	
+</script>
 
 <style type="text/css">
 	.icon{
@@ -103,48 +157,26 @@
 		overflow: auto;
 		
 	}
-	.right_side_info{
+	.sbm{
+		width: 85%;
+		height: 5%;
+		position: absolute;
+		bottom: 2%;
+		left: 5;
+	}
+	.rs_inp{
+		text-align: right;
+		border: 1px solid;
+		border-bottom: 0px solid;
 		float: right;
 	}
+	.right_side_info{
+		float: right;	
+		display: inline-block;
+	}
 	.border{
+		width: 100%;
+		display: inline-block;
 		border-bottom: 1px solid;
 	}
 </style>
-
-<script type="text/javascript">
-	var text = document.getElementById('text')
-	function send(id){
-		var params = 'id='+id;
-		var request = new XMLHttpRequest();
-		request.open('POST', 'lid/lid_info_ajax.php');
-		request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		request.send(params);
-		request.onreadystatechange = function(){
-			lid_info = JSON.parse(request.responseText);
-			if(lid_info){
-				if(lid_info['type'] == 'Юр'){
-					text.innerHTML= 
-					`
-					<h3>Тип: Юр</h3><br>
-					<div class='border'> Название компании: <div class='right_side_info'>${lid_info.company_name}</div></div><br>
-					<div class='border'> ИНН: <div class='right_side_info'>${lid_info.inn}</div></div><br>
-					<div class='border'> Юр. адрес: <div class='right_side_info'>${lid_info.ur_adress}</div></div><br>
-					`
-				}else{
-				text.innerHTML= 
-					`
-					<h3>Тип: Физ</h3><br>
-					<div class='border'> Имя: <div class='right_side_info'>${lid_info.name}</div></div><br>
-					`
-				}
-			}else{
-				text.innerHTML= 
-					`
-					<h1 style="text-align: center;">Нет данных</h1>
-					`
-			}
-			
-		}
-	}
-	
-</script>
